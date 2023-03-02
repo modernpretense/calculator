@@ -14,7 +14,6 @@ const divide = function(numOne, numTwo) {
     return numOne / numTwo;
 }
 
-
 const operate = function(operator, numOne, numTwo) {
     if (operator === 'add') {
        return add(numOne, numTwo);
@@ -28,3 +27,13 @@ const operate = function(operator, numOne, numTwo) {
         return 'Error';
     }
 }
+
+// Display
+let displayvalue = '0';
+const display = document.querySelector('#display');
+
+const setDisplay = function() {
+    display.innerText("wow");
+}
+
+setDisplay();
