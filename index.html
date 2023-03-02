@@ -12,34 +12,34 @@
 <body>
     <div id="content">
         <div id="calculator">
-            <div id="calcdisplay">7488,3</div>
+            <div id="calcdisplay">0</div>
             <div id="calcbtns">
                 <div class="calcbtnrow"><!-- Row 1 -->
-                    <button class="calcbtn">C</button>
+                    <button onclick="cBtnPress()" class="calcbtn">C</button>
+                    <button onclick="acBtnPress()"class="calcbtn">AC</button>
                     <button class="calcbtn">■</button>
-                    <button class="calcbtn">■</button>
-                    <button class="calcbtn">÷</button>
+                    <button onclick="setActiveOperator('division')" class="calcbtn">÷</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 2 -->
-                    <button class="calcbtn">7</button>
-                    <button class="calcbtn">8</button>
-                    <button class="calcbtn">9</button>
-                    <button class="calcbtn">x</button>
+                    <button onclick="numBtnPress(7)" class="calcbtn numbtn">7</button>
+                    <button onclick="numBtnPress(8)" class="calcbtn numbtn">8</button>
+                    <button onclick="numBtnPress(9)" class="calcbtn numbtn">9</button>
+                    <button onclick="setActiveOperator('multiplication')" class="calcbtn">x</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 3 -->
-                    <button class="calcbtn">4</button>
-                    <button class="calcbtn">5</button>
-                    <button class="calcbtn">6</button>
-                    <button class="calcbtn">-</button>
+                    <button onclick="numBtnPress(4)" class="calcbtn numbtn">4</button>
+                    <button onclick="numBtnPress(5)" class="calcbtn numbtn">5</button>
+                    <button onclick="numBtnPress(6)" class="calcbtn numbtn">6</button>
+                    <button onclick="setActiveOperator('subtraction')" class="calcbtn">-</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 4 -->
-                    <button class="calcbtn">1</button>
-                    <button class="calcbtn">2</button>
-                    <button class="calcbtn">3</button>
-                    <button class="calcbtn">+</button>
+                    <button onclick="numBtnPress(1)" class="calcbtn numbtn">1</button>
+                    <button onclick="numBtnPress(2)" class="calcbtn numbtn">2</button>
+                    <button onclick="numBtnPress(3)" class="calcbtn numbtn">3</button>
+                    <button onclick="setActiveOperator('addition')" class="calcbtn">+</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 5 -->
-                    <button class="calcbtn">0</button>
+                    <button onclick="numBtnPress(0)" class="calcbtn numbtn">0</button>
                     <button class="calcbtn">■</button>
                     <button class="calcbtn">,</button>
                     <button class="calcbtn">=</button>

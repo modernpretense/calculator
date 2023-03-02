@@ -29,11 +29,41 @@ const operate = function(operator, numOne, numTwo) {
 }
 
 // Display
-let displayvalue = '0';
-const display = document.querySelector('#display');
+const calcDisplay = document.querySelector('#calcdisplay');
 
-const setDisplay = function() {
-    display.innerText("wow");
+// const setDisplay = function(number) {
+//     calcDisplay.innerText = number;
+// }
+
+// Memory
+let storedValue;
+let activeValue;
+let activeOperator; // 'addition', 'subtraction', 'multiplication', 'division', 'reset'
+
+// Buttons
+
+const numBtnPress = function (number) {
+    if (activeValue === undefined || activeValue === 0) {
+        activeValue = `${number}`;
+    } else {
+    activeValue = `${number}${activeValue}`;
+    }
+    calcDisplay.innerText = activeValue;
 }
 
-setDisplay();
+const cBtnPress = function () {
+    activeValue = 0;
+    calcDisplay.innerText = activeValue;
+}
+
+const acBtnPress = function () {
+    activeValue = 0;
+    storedValue = 0;
+    activeOperator = 'reset';
+    calcDisplay.innerText = activeValue;
+}
+
+const setActiveOperator = function (operator) {
+    activeOperator = operator;
+}
+
