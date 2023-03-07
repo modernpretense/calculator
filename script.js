@@ -31,12 +31,12 @@ const operate = function(operator, numOne, numTwo) {
 // Display
 const calcDisplay = document.querySelector('#calcdisplay');
 
-// const setDisplay = function(number) {
-//     calcDisplay.innerText = number;
-// }
+const setDisplay = function(number) {
+     calcDisplay.innerText = number;
+ }
 
 // Memory
-let storedValue;
+let storedValue = 0;
 let activeValue;
 let activeOperator; // 'addition', 'subtraction', 'multiplication', 'division', 'reset'
 
@@ -44,26 +44,48 @@ let activeOperator; // 'addition', 'subtraction', 'multiplication', 'division', 
 
 const numBtnPress = function (number) {
     if (activeValue === undefined || activeValue === 0) {
-        activeValue = `${number}`;
+        activeValue = Number(`${number}`);
     } else {
-    activeValue = `${number}${activeValue}`;
+    activeValue = Number(`${activeValue}${number}`);
     }
-    calcDisplay.innerText = activeValue;
+    setDisplay(activeValue);
 }
 
 const cBtnPress = function () {
     activeValue = 0;
-    calcDisplay.innerText = activeValue;
+    setDisplay(storedValue);
 }
 
 const acBtnPress = function () {
     activeValue = 0;
     storedValue = 0;
     activeOperator = 'reset';
-    calcDisplay.innerText = activeValue;
+    setDisplay(activeValue);
 }
 
 const setActiveOperator = function (operator) {
     activeOperator = operator;
+    if (activeValue === undefined) {
+        return;
+    } else if (activeOperator = 'addition') {
+        storedValue = operate('add', storedValue, activeValue);
+    } else if (activeOperator = 'subtraction') {
+        storedValue = operate('subtract', storedValue, activeValue);
+    }
+    activeValue = 0;
+    setDisplay(storedValue);
 }
 
+const equalsBtnPress = function () {
+    let sum = 0;
+    if (activeOperator === 'reset' || activeOperator === undefined) {
+        return;
+    } else if (activeOperator = 'addition') {
+        sum = operate('add', storedValue, activeValue);
+    }
+    activeValue = 0;
+    storedValue = sum;
+    activeOperator = 'reset';
+    sum = 0;
+    setDisplay(storedValue);
+}
