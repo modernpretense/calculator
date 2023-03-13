@@ -31,13 +31,17 @@ const setDisplay = (number) => {
 // Global variables
 let storedNumber = 0;
 let activeNumber;
+let operatorPressed = false; // Flag to see if an operator-button has been pressed. Is cleared by next nummeral input.
+let equalPressed = false;
 let activeOperator; // 'add, 'subtract', 'multiply', 'divide', 'reset'
 
 // Buttons
 
 const numBtnPress = function (btnNumber) {
-    if (activeNumber === undefined || activeNumber === 0) {
+    checkOperatorPressed();
+    if (activeNumber === undefined || activeNumber === 0 || equalPressed === true) {
         activeNumber = Number(`${btnNumber}`);
+        equalPressed = false;
     } else {
     activeNumber = Number(`${activeNumber}${btnNumber}`);
     }
@@ -45,42 +49,50 @@ const numBtnPress = function (btnNumber) {
 }
 
 const cBtnPress = function () {
-    activeNumber = 0;
-    setDisplay(storedNumber);
+    activeNumber = storedNumber;
+    storedNumber = 0;
+    activeOperator = 'reset';
+    operatorPressed = false;
+    setDisplay(activeNumber);
 }
 
 const acBtnPress = function () {
     activeNumber = 0;
     storedNumber = 0;
     activeOperator = 'reset';
+    operatorPressed = false;
+    equalPressed = false;
     setDisplay(activeNumber);
 }
 
 const setActiveOperator = function (operatorInput) {
     activeOperator = operatorInput;
-    if (activeNumber === undefined) {
-        return;
-    } else if (activeOperator === 'reset' || activeOperator === undefined) {
-        storedNumber = activeNumber;
-    }else {
-        storedNumber = operate(`${operatorInput}`, storedNumber, activeNumber);
-    }
-    activeNumber = 0;
-    setDisplay(storedNumber);
+    operatorPressed = true;
 }
 
 const equalsBtnPress = function () {
-    let sum = 0;
-    if (activeOperator === 'reset' || activeOperator === undefined) {
+    if (activeNumber === undefined || operatorPressed === true) {
         return;
-    } else if (activeOperator === 'add') {
-        sum = operate('add', storedNumber, activeNumber);
-    }    else if (activeOperator === 'subtract') {
-            sum = operate('subtract', storedNumber, activeNumber);
+    } else if (activeOperator === 'reset' || activeOperator === undefined) {
+        return;
+    }else {
+        activeNumber = operate(`${activeOperator}`, storedNumber, activeNumber);
     }
-    activeNumber = 0;
-    storedNumber = sum;
+    storedNumber = 0;
     activeOperator = 'reset';
-    sum = 0;
-    setDisplay(storedNumber);
+    equalPressed = true;
+    setDisplay(activeNumber);
+}
+
+// checkOperatorPressed is attatched to numberbuttons to make chaining opearations possible wihtout using equal-button first.
+const checkOperatorPressed = function () {
+    if (operatorPressed === true) {
+        if (storedNumber !== 0 && activeNumber !== 0) {
+            storedNumber = operate(`${activeOperator}`, storedNumber, activeNumber);
+        } else {
+            storedNumber = activeNumber;
+        }
+    activeNumber = 0;
+    operatorPressed = false;
+    }
 }
