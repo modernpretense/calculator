@@ -1,29 +1,22 @@
 // Calculator Javascript
 "use strict";
 
-const add = function(numOne, numTwo) {
-    return numOne + numTwo;
-}
-const subtract = function(numOne, numTwo) {
-    return numOne - numTwo;
-}
-const multiply = function(numOne, numTwo) {
-    return numOne * numTwo;
-}
-const divide = function(numOne, numTwo) {
-    return numOne / numTwo;
-}
+// Operators
+const add = (a, b) => a + b
+const subtract = (a, b) => a - b
+const multiply = (a, b) => a * b
+const divide = (a, b) => a / b
 
-const operate = function(operator, numOne, numTwo) {
+const operate = (operator, a, b) => {
     if (operator === 'add') {
-       return add(numOne, numTwo);
+        return add(a, b);
     } else if (operator === 'subtract') {
-       return subtract(numOne, numTwo);
-    }else if (operator === 'multiply') {
-       return multiply(numOne, numTwo);
-    }else if (operator === 'divide') {
-       return divide(numOne, numTwo);
-    }else {
+        return subtract(a, b);
+    } else if (operator === 'multiply') {
+        return multiply(a, b);
+    } else if (operator === 'divide') {
+        return divide(a, b);
+    } else {
         return 'Error';
     }
 }
@@ -31,61 +24,63 @@ const operate = function(operator, numOne, numTwo) {
 // Display
 const calcDisplay = document.querySelector('#calcdisplay');
 
-const setDisplay = function(number) {
-     calcDisplay.innerText = number;
- }
+const setDisplay = (number) => {
+    calcDisplay.innerText = number;
+}
 
-// Memory
-let storedValue = 0;
-let activeValue;
-let activeOperator; // 'addition', 'subtraction', 'multiplication', 'division', 'reset'
+// Global variables
+let storedNumber = 0;
+let activeNumber;
+let activeOperator; // 'add, 'subtract', 'multiply', 'divide', 'reset'
 
 // Buttons
 
-const numBtnPress = function (number) {
-    if (activeValue === undefined || activeValue === 0) {
-        activeValue = Number(`${number}`);
+const numBtnPress = function (btnNumber) {
+    if (activeNumber === undefined || activeNumber === 0) {
+        activeNumber = Number(`${btnNumber}`);
     } else {
-    activeValue = Number(`${activeValue}${number}`);
+    activeNumber = Number(`${activeNumber}${btnNumber}`);
     }
-    setDisplay(activeValue);
+    setDisplay(activeNumber);
 }
 
 const cBtnPress = function () {
-    activeValue = 0;
-    setDisplay(storedValue);
+    activeNumber = 0;
+    setDisplay(storedNumber);
 }
 
 const acBtnPress = function () {
-    activeValue = 0;
-    storedValue = 0;
+    activeNumber = 0;
+    storedNumber = 0;
     activeOperator = 'reset';
-    setDisplay(activeValue);
+    setDisplay(activeNumber);
 }
 
-const setActiveOperator = function (operator) {
-    activeOperator = operator;
-    if (activeValue === undefined) {
+const setActiveOperator = function (operatorInput) {
+    activeOperator = operatorInput;
+    if (activeNumber === undefined) {
         return;
-    } else if (activeOperator = 'addition') {
-        storedValue = operate('add', storedValue, activeValue);
-    } else if (activeOperator = 'subtraction') {
-        storedValue = operate('subtract', storedValue, activeValue);
+    } else if (activeOperator === 'reset' || activeOperator === undefined) {
+        storedNumber = activeNumber;
+    }else {
+        storedNumber = operate(`${operatorInput}`, storedNumber, activeNumber);
     }
-    activeValue = 0;
-    setDisplay(storedValue);
+    activeNumber = 0;
+    setDisplay(storedNumber);
 }
 
 const equalsBtnPress = function () {
     let sum = 0;
     if (activeOperator === 'reset' || activeOperator === undefined) {
         return;
-    } else if (activeOperator = 'addition') {
-        sum = operate('add', storedValue, activeValue);
+    } else if (activeOperator === 'add') {
+        sum = operate('add', storedNumber, activeNumber);
+    }    else if (activeOperator === 'subtract') {
+            sum = operate('subtract', storedNumber, activeNumber);
     }
-    activeValue = 0;
-    storedValue = sum;
+    activeNumber = 0;
+    storedNumber = sum;
     activeOperator = 'reset';
     sum = 0;
-    setDisplay(storedValue);
+    setDisplay(storedNumber);
 }
