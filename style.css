@@ -1,1 +1,83 @@
 /* Calculator CSS */
+
+@font-face {
+    font-family: digital-7-mono;
+    src: url(digital-7.mono.ttf);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #539165;
+}
+
+#calculator {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+}
+#calctop {
+    height: 36px;
+    border: #F8F5E4 solid 2px;
+    border-bottom: 0;
+    background-color: #3F497F;
+    font-family: digital-7-mono;
+    font-size: 25px;
+    color: #F8F5E4;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#calcdisplay {
+    height: 50px;
+    font-size: 50px;
+    font-family: digital-7-mono;
+    color: #3F497F;
+    text-align: right;
+    padding-right: 10px;
+    background-color: #F7C04A;
+    border: #F8F5E4 solid 2px;
+}
+
+#calcbtns {
+    display: flex;
+    flex-direction: column;
+    border-left: #F8F5E4 solid 2px;
+}
+
+.calcbtnrow {
+    display: flex;
+    flex: 1;
+    border-bottom: #F8F5E4 solid 2px;
+}
+
+.calcbtn {
+    flex: 1;
+    font-size: 24px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    background-color: #3F497F;
+    color: #F8F5E4;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    border: 0;
+    border-right: #F8F5E4 solid 2px;
+}
+
+#commabtn {
+    flex: 1;
+}
+
+#equalbtn {
+    flex: 2;
+}
+
+.acbtn {
+    flex: 2;
+}
+
+.markedbtn {
+    background-color: #F7C04A;
+    color:#3F497F;
+}

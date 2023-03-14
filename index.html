@@ -12,37 +12,36 @@
 <body>
     <div id="content">
         <div id="calculator">
+            <div id="calctop">Kalkis 1.1</div>
             <div id="calcdisplay">0</div>
             <div id="calcbtns">
                 <div class="calcbtnrow"><!-- Row 1 -->
-                    <button onclick="cBtnPress()" class="calcbtn">C</button>
-                    <button onclick="acBtnPress()"class="calcbtn">AC</button>
-                    <button class="calcbtn">■</button>
-                    <button onclick="setActiveOperator('divide')" class="calcbtn">÷</button>
+                    <button onclick="cBtnPress()" class="calcbtn cbtn">C</button>
+                    <button onclick="acBtnPress()"class="calcbtn acbtn">AC</button>
+                    <button onclick="setActiveOperator('divide')" class="calcbtn operatorbtn" id="divide">÷</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 2 -->
                     <button onclick="numBtnPress(7)" class="calcbtn numbtn">7</button>
                     <button onclick="numBtnPress(8)" class="calcbtn numbtn">8</button>
                     <button onclick="numBtnPress(9)" class="calcbtn numbtn">9</button>
-                    <button onclick="setActiveOperator('multiply')" class="calcbtn">x</button>
+                    <button onclick="setActiveOperator('multiply')" class="calcbtn operatorbtn" id="multiply">x</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 3 -->
                     <button onclick="numBtnPress(4)" class="calcbtn numbtn">4</button>
                     <button onclick="numBtnPress(5)" class="calcbtn numbtn">5</button>
                     <button onclick="numBtnPress(6)" class="calcbtn numbtn">6</button>
-                    <button onclick="setActiveOperator('subtract')" class="calcbtn">-</button>
+                    <button onclick="setActiveOperator('subtract')" class="calcbtn operatorbtn" id="subtract">-</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 4 -->
                     <button onclick="numBtnPress(1)" class="calcbtn numbtn">1</button>
                     <button onclick="numBtnPress(2)" class="calcbtn numbtn">2</button>
                     <button onclick="numBtnPress(3)" class="calcbtn numbtn">3</button>
-                    <button onclick="setActiveOperator('add')" class="calcbtn">+</button>
+                    <button onclick="setActiveOperator('add')" class="calcbtn operatorbtn" id="add">+</button>
                 </div>
                 <div class="calcbtnrow"><!-- Row 5 -->
                     <button onclick="numBtnPress(0)" class="calcbtn numbtn">0</button>
-                    <button class="calcbtn">■</button>
-                    <button class="calcbtn">,</button>
-                    <button onclick="equalsBtnPress()" class="calcbtn">=</button>
+                    <button onclick="commaBtnPress()" class="calcbtn numbtn" id="commabtn">.</button>
+                    <button onclick="equalsBtnPress()" class="calcbtn" id="equalbtn">=</button>
                 </div>
             </div>
         </div>
